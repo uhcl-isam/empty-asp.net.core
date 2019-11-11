@@ -6,6 +6,7 @@
     <title>Test the form</title>
     <link href='lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
     <link href='lib/bootstrap/dist/css/bootstrap-theme.css' rel='stylesheet' />
+    <!--<script src="js/rb_formsubmit.js"></script>-->
 </head>
 <body>
     <div class="container">
@@ -20,6 +21,18 @@
                 <label for="message" class="control-label col-sm-2">Message</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="message" name="message">This is a test of the form post to a web api controller!</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Selection</label>
+                <div class="col-sm-10">
+                    <select name="select" class="form-control" value="Submit" multiple size="5">
+                        <option value="one" selected="selected">One</option>
+                        <option value="two">Two</option>
+                        <option value="three">Three</option>
+                        <option value="four" selected="selected">Four</option>
+                        <option value="five">Five</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">

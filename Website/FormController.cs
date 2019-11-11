@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -61,12 +62,24 @@ namespace Website
             return Ok(sb.ToString());
         }
 
-        private static void AddRow(StringBuilder sb, string name, string value, bool isHeader = false)
+        private static void AddRow(StringBuilder sb, string name, StringValues value, bool isHeader = false)
         {
             string tag = isHeader ? "th" : "td";
             sb.Append("<tr>");
             sb.AppendFormat("<{0}>{1}</{0}>", tag, name);
-            sb.AppendFormat("<{0}>{1}</{0}>", tag, value);
+            if (value.Count > 1)
+            {
+                sb.AppendFormat("<{0}><ol start='0'>", tag);
+                foreach (var val in value)
+                {
+                    sb.AppendFormat("<li>{0}</li>", val);
+                }
+                sb.AppendFormat("</ol></{0}>", tag);
+            }
+            else
+            {
+                sb.AppendFormat("<{0}>{1}</{0}>", tag, value);
+            }
             sb.AppendLine("</tr>");
         }
     }
